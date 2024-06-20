@@ -1,9 +1,16 @@
+require('dotenv').config();
+require('express-async-errors');
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const jwtpassword = "123456"
-const app = express ();
 
+
+const app = express ();
 const port  = 3000;
+
+const notFoundMiddleware = require('./middlewares/not-found');
+const errorHandlerMiddleware = require('../Middlewares/error-handler');
+
 app.use(express.json());
 app.get('/signin', (req, res) => {
     const username = req.body.username;
